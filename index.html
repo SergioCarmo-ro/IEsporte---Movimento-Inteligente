@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel IEsporte - Login e Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="antialiased">
+    <div id="loading-indicator" class="fixed inset-0 bg-white/70 backdrop-blur-sm z-[100] flex items-center justify-center">
+        <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-t-2 border-[#6B8E23]"></div>
+        <p class="ml-4 text-[#3D3B3A] font-semibold">Carregando...</p>
+    </div>
+    <div id="auth-view" class="min-h-screen flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl shadow-xl w-full max-w-lg p-8 md:p-10 space-y-6">
+            <h1 class="text-3xl font-bold text-center text-[#3D3B3A]">
+                <span class="text-[#6B8E23]">I</span>Esporte Acesso
+            </h1>
+            <p id="auth-message" class="text-center text-sm text-red-500 hidden" aria-live="polite"></p>
+            <div class="flex border-b border-gray-200 mb-6">
+                <button id="show-login-btn" class="flex-1 py-3 font-semibold transition text-gray-700 border-b-2 border-[#6B8E23] active-tab">Entrar</button>
+                <button id="show-signup-btn" class="flex-1 py-3 font-semibold transition text-gray-500 border-b-2 border-transparent">Criar Conta</button>
+            </div>
+            <form id="login-form" class="space-y-4">
+                <div>
+                    <label for="login-email" class="block text-sm font-medium text-gray-700">Email</label>
+                    <input type="email" id="login-email" placeholder="seu.email@exemplo.com" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-[#6B8E23] focus:border-[#6B8E23]" required>
+                </div>
+                <div>
+                    <label for="login-password" class="block text-sm font-medium text-gray-700">Senha</label>
+                    <input type="password" id="login-password" placeholder="Mínimo 6 caracteres" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-[#6B8E23] focus:border-[#6B8E23]" required>
+                </div>
+                <button type="submit" class="w-full bg-[#6B8E23] text-white py-3 px-4 rounded-full font-bold hover:bg-[#4A7C59] transition-colors focus:outline-none focus:ring-4 focus:ring-green-200">
+                    Entrar no IEsporte
+                </button>
+            </form>
+            <form id="signup-form" class="space-y-4 hidden">
+                <div>
+                    <label for="signup-email" class="block text-sm font-medium text-gray-700">Email</label>
+                    <input type="email" id="signup-email" placeholder="seu.email@exemplo.com" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-[#6B8E23] focus:border-[#6B8E23]" required>
+                </div>
+                <div>
+                    <label for="signup-password" class="block text-sm font-medium text-gray-700">Senha</label>
+                    <input type="password" id="signup-password" placeholder="Mínimo 6 caracteres" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-[#6B8E23] focus:border-[#6B8E23]" required minlength="6">
+                </div>
+                <div class="pt-2">
+                    <div class="text-sm text-gray-700 space-y-2 max-h-40 overflow-y-auto p-2 border border-gray-100 rounded-lg bg-gray-50">
+                        <p><strong>1. Aceitação e Escopo:</strong> Ao utilizar a plataforma IEsporte, você concorda integralmente com a coleta e o processamento de seus dados de movimento para fins clínicos e de pesquisa, conforme detalhado em nossa Política
+                            de Privacidade.</p>
+                        <p><strong>2. Propriedade Intelectual:</strong> O conteúdo, incluindo o Módulo Interativo de Exercícios e a análise de movimento, é propriedade exclusiva da Clínica IEsporte.</p>
+                        <p><strong>3. Limitação de Responsabilidade:</strong> As informações e os exercícios fornecidos não substituem o diagnóstico médico. O uso é sob supervisão de um fisioterapeuta qualificado.</p>
+                        <p><strong>4. Modificações:</strong> Reservamo-nos o direito de modificar estes Termos a qualquer momento. Notificaremos os usuários sobre alterações significativas.</p>
+                    </div>
+                    <div class="flex items-start mt-3">
+                        <input type="checkbox" id="aceite-termos-signup" class="mt-1 mr-3 h-5 w-5 rounded border-gray-300 text-[#6B8E23] focus:ring-[#6B8E23]">
+                        <label for="aceite-termos-signup" class="label-termos text-sm">
+                            Eu li e concordo integralmente com os Termos de Uso acima, e compreendo que meus dados
+                            de análise de movimento serão utilizados para acompanhamento clínico, validação de segurança e melhoria contínua da inteligência artificial da plataforma IEsporte, sendo esta aceitação obrigatória para o cadastro.
+                        </label>
+                    </div>
+                </div>
+                <button type="submit" class="w-full bg-[#4A7C59] text-white py-3 px-4 rounded-full font-bold hover:bg-[#6B8E23] transition-colors focus:outline-none focus:ring-4 focus:ring-green-200">
+                    Criar Conta
+                </button>
+            </form>
+        </div>
+    </div>
+    <div id="main-content" class="hidden">
+        <header class="bg-white/80 backdrop-blur-lg sticky top-0 z-40 shadow-sm">
+            <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+                <div class="font-extrabold text-2xl text-[#3D3B3A]">
+                    <span class="text-[#6B8E23]">I</span>Esporte
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#overview" class="nav-link font-semibold text-gray-600">Visão Geral</a>
+                    <a href="#exercises" class="nav-link font-semibold text-gray-600">Exercícios</a>
+                    <a href="#market" class="nav-link font-semibold text-gray-600">Mercado</a>
+                    <a href="#tech" class="nav-link font-semibold text-gray-600">Tecnologia</a>
+                    <a href="#settings" class="nav-link font-semibold text-red-500">Configurações</a>
+                    <button id="sign-out-btn" class="bg-gray-100 text-gray-700 px-4 py-2 rounded-full text-sm font-bold hover:bg-gray-200 transition-colors">Sair</button>
+                </div>
+            </nav>
+        </header>
+        <main class="container mx-auto px-6 py-12">
+            <section id="hero" class="text-center py-16">
+                <h1 class="text-4xl md:text-6xl font-extrabold text-[#3D3B3A] leading-tight">Painel de Análise e Conteúdo Personalizado</h1>
+                <p class="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">Bem-vindo(a), <span id="user-display" class="font-bold text-[#6B8E23]">Usuário</span>. Esta é a sua central de acompanhamento clínico e educacional.</p>
+            </section>
+            <section id="overview" class="py-16">
+                <h2 class="text-3xl font-bold text-center mb-4">Visão Geral do Projeto</h2>
+                <p class="text-center text-gray-600 max-w-3xl mx-auto mb-12">
+                    O IEsporte se baseia em três pilares fundamentais. O gráfico abaixo ilustra o foco distribuído entre essas áreas-chave.
+                </p>
+                <div class="bg-white rounded-2xl shadow-lg p-8">
+                    <div class="grid md:grid-cols-2 gap-12 items-center">
+                        <div class="chart-container donut-chart-container">
+                            <canvas id="overviewChart"></canvas>
+                        </div>
+                        <div class="space-y-6">
+                            <div>
+                                <h3 class="font-bold text-xl mb-2 text-[#6B8E23]">Análise Clínica de Precisão</h3>
+                                <p>Fornece ao fisioterapeuta uma interface para registrar análises técnicas visuais do movimento do paciente, criando um histórico clínico digital e estruturado.</p>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-xl mb-2 text-[#4A7C59]">Educação e Engajamento do Paciente</h3>
+                                <p>Oferece um portal de conteúdo técnico, como guias de exercícios corretivos e materiais educativos, selecionados pelo profissional para orientar o paciente em sua jornada.</p>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-xl mb-2 text-[#A3B18A]">Posicionamento Estratégico</h3>
+                                <p>Utiliza tecnologia de ponta, incluindo aprendizado de máquina e futuras integrações com IA generativa, para se diferenciar no crescente mercado de fisioterapia digital.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section id="exercises" class="py-16">
+                <h2 class="text-3xl font-bold text-center mb-4">Módulo Interativo de Exercícios</h2>
+                <p class="text-center text-gray-600 max-w-3xl mx-auto mb-12">
+                    Use os filtros para navegar pelo guia e clique em um exercício para ver os detalhes de execução, simulando a funcionalidade principal do aplicativo.
+                </p>
+                <div id="exercise-filters" class="flex justify-center flex-wrap gap-3 mb-8"></div>
+                <div id="exercise-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"></div>
+            </section>
+            <section id="market" class="py-16">
+                <h2 class="text-3xl font-bold text-center mb-4">Análise de Mercado Comparativa</h2>
+                <p class="text-center text-gray-600 max-w-3xl mx-auto mb-12">
+                    Comparação do IEsporte com concorrentes em Eficácia Clínica (precisão da análise) e Performance Técnica (eficiência do sistema).
+                </p>
+                <div class="bg-white rounded-2xl shadow-lg p-8">
+                    <div class="chart-container bar-chart-container">
+                        <canvas id="marketChart"></canvas>
+                    </div>
+                </div>
+            </section>
+            <section id="tech" class="py-16">
+                <h2 class="text-3xl font-bold text-center mb-4">Arquitetura e Tecnologia</h2>
+                <p class="text-center text-gray-600 max-w-3xl mx-auto mb-12">
+                    A plataforma IEsporte é construída sobre uma base tecnológica moderna e escalável, utilizando o padrão de projeto Facade.
+                </p>
+                <div class="max-w-5xl mx-auto mt-8 p-8 bg-white rounded-2xl shadow-lg">
+                    <div class="flex flex-col md:flex-row items-center justify-center space-y-8 md:space-y-0 md:space-x-8 text-center">
+                        <div class="tech-stack-item border-2 border-gray-200 rounded-lg p-6 relative group w-64">
+                            <div class="text-4xl mb-3"> 📱 </div>
+                            <h4 class="font-bold text-lg">App Clínico (Mobile)</h4>
+                            <p class="text-sm text-gray-500">Kotlin Nativo</p>
+                            <div class="absolute bottom-full mb-2 w-60 left-1/2 -translate-x-1/2 bg-gray-800 text-white text-xs rounded py-1 px-2 opacity-0 group-hover:opacity-100 transition-opacity">App Android para o fisioterapeuta registrar a análise clínica.</div>
+                        </div>
+                        <div class="text-3xl font-light text-gray-400">→</div>
+                        <div class="tech-stack-item border-2 border-dashed border-gray-400 rounded-lg p-6 relative group w-64 bg-green-50">
+                            <div class="text-4xl mb-3"> 🛡️ </div>
+                            <h4 class="font-bold text-lg">API Facade</h4>
+                            <p class="text-sm text-gray-500">Python (Flask/FastAPI)</p>
+                            <div class="absolute bottom-full mb-2 w-60 left-1/2 -translate-x-1/2 bg-gray-800 text-white text-xs rounded py-1 px-2 opacity-0 group-hover:opacity-100 transition-opacity">Interface simplificada que orquestra os serviços de backend, aplicando o padrão Facade.</div>
+                        </div>
+                        <div class="text-3xl font-light text-gray-400">→</div>
+                        <div class="flex flex-col space-y-4">
+                            <div class="tech-stack-item border-2 border-gray-200 rounded-lg p-6 relative group w-64">
+                                <div class="text-4xl mb-3"> 🧠 </div>
+                                <h4 class="font-bold text-lg">Análise IA</h4>
+                                <p class="text-sm text-gray-500">Python + TensorFlow</p>
+                                <div class="absolute bottom-full mb-2 w-60 left-1/2 -translate-x-1/2 bg-gray-800 text-white text-xs rounded py-1 px-2 opacity-0 group-hover:opacity-100 transition-opacity">Modelo de Machine Learning para análise de movimento.</div>
+                            </div>
+                            <div class="tech-stack-item border-2 border-gray-200 rounded-lg p-6 relative group w-64">
+                                <div class="text-4xl mb-3"> 💾 </div>
+                                <h4 class="font-bold text-lg">Banco de Dados</h4>
+                                <p class="text-sm text-gray-500">SQL</p>
+                                <div class="absolute bottom-full mb-2 w-60 left-1/2 -translate-x-1/2 bg-gray-800 text-white text-xs rounded py-1 px-2 opacity-0 group-hover:opacity-100 transition-opacity">Persistência de dados clínicos e de exercícios.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section id="settings" class="py-16 bg-white rounded-2xl shadow-lg border-t-4 border-red-500">
+                <h2 class="text-3xl font-bold text-center mb-4 text-red-700">Configurações de Conta e Gerenciamento</h2>
+                <p class="text-center text-gray-600 max-w-3xl mx-auto mb-12">
+                    Aqui você pode gerenciar sua conta, incluindo a opção de exclusão.
+                </p>
+                <div class="max-w-3xl mx-auto p-6 space-y-8">
+                    <div class="p-6 bg-red-50 rounded-xl flex justify-between items-center border border-red-300">
+                        <div class="space-y-1">
+                            <h3 class="font-bold text-lg text-red-700">Excluir Sua Conta</h3>
+                            <p class="text-sm text-red-600">Esta ação é irreversível e removerá permanentemente seu histórico e todos os seus dados da plataforma IEsporte.</p>
+                        </div>
+                        <button id="delete-account-btn" class="px-6 py-3 font-bold rounded-full text-white hover:opacity-90 transition-opacity focus:outline-none focus:ring-4 focus:ring-red-300" aria-controls="modal">
+                            Excluir Conta
+                        </button>
+                    </div>
+                </div>
+            </section>
+        </main>
+        <footer class="bg-gray-800 text-white mt-16">
+            <div class="container mx-auto px-6 py-8 text-center">
+                <p class="font-bold text-lg">Projeto IEsporte</p>
+                <p class="text-sm text-gray-400 mt-2">&copy; 2025 | Desenvolvido por Sérgio Ademir Rocha do Carmo</p>
+            </div>
+        </footer>
+    </div>
+    <div id="modal" class="modal fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center p-4 invisible opacity-0 z-50">
+        <div class="modal-content bg-white rounded-2xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto transform scale-95">
+            <div class="p-8">
+                <div class="flex justify-between items-start mb-4">
+                    <h2 id="modal-title" class="text-2xl font-bold text-[#3D3B3A]"></h2>
+                    <button id="modal-close" class="text-gray-500 hover:text-gray-800 text-3xl" aria-label="Fechar Modal">&times;</button>
+                </div>
+                <div id="modal-body" class="text-gray-700 space-y-6"></div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="script.js"></script>
+</body>
+
+</html>

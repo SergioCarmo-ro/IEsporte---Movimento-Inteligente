@@ -1,0 +1,94 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap');
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #F9F7F3;
+    /* Calm Harmony: Off-White */
+    color: #3D3B3A;
+    /* Calm Harmony: Dark Charcoal - Alto contraste */
+}
+
+
+/* Estilos de Link e Botões */
+
+.nav-link {
+    position: relative;
+    transition: color 0.3s;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -4px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #6B8E23;
+    transition: width 0.3s;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+    width: 100%;
+}
+
+.filter-btn.active {
+    background-color: #6B8E23;
+    color: #FFFFFF;
+}
+
+.tech-stack-item:hover {
+    transform: scale(1.05);
+    border-color: #6B8E23;
+}
+
+
+/* Layout dos Gráficos */
+
+.chart-container {
+    position: relative;
+    width: 100%;
+    margin: auto;
+}
+
+.donut-chart-container {
+    max-width: 400px;
+    height: auto;
+    max-height: 400px;
+}
+
+.bar-chart-container {
+    max-width: 900px;
+    height: 450px;
+    max-height: 60vh;
+}
+
+
+/* Acessibilidade: Botão Excluir Conta */
+
+#delete-account-btn {
+    background-color: #B22222;
+    /* Vermelho forte */
+    color: #FFFFFF;
+    transition: background-color 0.3s;
+}
+
+#delete-account-btn:hover {
+    background-color: #8B0000;
+}
+
+
+/* Acessibilidade: Label de Termos de Uso com alto contraste e formato para 4+ linhas */
+
+.label-termos {
+    cursor: pointer;
+    display: inline-flex;
+    align-items: flex-start;
+    padding: 8px;
+    color: #3D3B3A;
+    /* Alto contraste */
+}
