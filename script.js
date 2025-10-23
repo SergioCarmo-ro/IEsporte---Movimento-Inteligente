@@ -9,24 +9,24 @@ from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
 // Habilita logs de debug do
 // Firestore
-setLogLevel('Debug'); //
+// setLogLevel('Debug'); //
 
 // --- VARIÁVEIS GLOBAIS (Obrigatórias) ---
 
-//Importe as funções que você precisa dos SDKs que você precisa
-import { initializeApp } from "firebase/app";
+// Importe as funções que você precisa dos SDKs que você precisa
+//import { initializeApp } from "firebase/app";
 // TODO: Adicionar SDKs para produtos Firebase que você deseja usar
-//firebase.google.com/docs/web/setup#available-libraries
+// https://firebase.google.com/docs/web/setup#available-libraries
 
 // Configuração do Firebase do aplicativo na web
-const firebaseConfig = {
+/*const firebaseConfig = {
     apiKey: "AIzaSyAH22ZeSzEFrTEF5LbvKq1_9gLixgMIkD0",
     authDomain: "iesporte-movimento-inteligente.firebaseapp.com",
     projectId: "iesporte-movimento-inteligente",
     storageBucket: "iesporte-movimento-inteligente.firebasestorage.app",
     messagingSenderId: "502338413071",
     appId: "1:502338413071:web:094e55b0b3b08a8ff7f97a"
-};
+};*/
 
 // Initialize Firebase
 
@@ -36,7 +36,7 @@ const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial
 */
 //const app = initializeApp(firebaseConfig);
 const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
-//const firebaseConfig = JSON.parse(typeof __firebase_config !== 'undefined' ? __firebase_config : '{}');
+const firebaseConfig = JSON.parse(typeof __firebase_config !== 'undefined' ? __firebase_config : '{}');
 const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
 
 // --- INICIALIZAÇÃO FIREBASE ---
