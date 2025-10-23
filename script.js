@@ -28,6 +28,12 @@ from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
     appId: "1:502338413071:web:094e55b0b3b08a8ff7f97a"
 };*/
 
+import { DatabaseFacade } from "./databaseFacade.js";
+
+const usuarios = await DatabaseFacade.listarUsuarios();
+console.log("Usuários cadastrados:", usuarios);
+
+
 // Initialize Firebase
 
 /*const appId = "1:502338413071:web:094e55b0b3b08a8ff7f97a".appId.split(':')[2] || 'default-app-id';
