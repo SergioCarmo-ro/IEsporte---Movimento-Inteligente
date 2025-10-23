@@ -9,24 +9,24 @@ from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
 // Habilita logs de debug do
 // Firestore
-// setLogLevel('Debug'); //
+setLogLevel('Debug'); //
 
 // --- VARIÁVEIS GLOBAIS (Obrigatórias) ---
 
-// Importe as funções que você precisa dos SDKs que você precisa
-//import { initializeApp } from "firebase/app";
+//Importe as funções que você precisa dos SDKs que você precisa
+import { initializeApp } from "firebase/app";
 // TODO: Adicionar SDKs para produtos Firebase que você deseja usar
-// https://firebase.google.com/docs/web/setup#available-libraries
+//firebase.google.com/docs/web/setup#available-libraries
 
 // Configuração do Firebase do aplicativo na web
-/*const firebaseConfig = {
+const firebaseConfig = {
     apiKey: "AIzaSyAH22ZeSzEFrTEF5LbvKq1_9gLixgMIkD0",
     authDomain: "iesporte-movimento-inteligente.firebaseapp.com",
     projectId: "iesporte-movimento-inteligente",
     storageBucket: "iesporte-movimento-inteligente.firebasestorage.app",
     messagingSenderId: "502338413071",
     appId: "1:502338413071:web:094e55b0b3b08a8ff7f97a"
-};*/
+};
 
 // Initialize Firebase
 
@@ -36,7 +36,7 @@ const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial
 */
 //const app = initializeApp(firebaseConfig);
 const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
-const firebaseConfig = JSON.parse(typeof __firebase_config !== 'undefined' ? __firebase_config : '{}');
+//const firebaseConfig = JSON.parse(typeof __firebase_config !== 'undefined' ? __firebase_config : '{}');
 const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
 
 // --- INICIALIZAÇÃO FIREBASE ---
@@ -445,7 +445,7 @@ const exercisesData = [{
         duration: '3x 12 repetições',
         difficulty: 'Fácil',
         description: 'Deite-se de barriga para cima, joelhos dobrados, pés no chão. Levante o quadril até que o corpo forme uma linha reta dos ombros aos joelhos. Mantenha 2 segundos e desça lentamente.',
-        image: 'https://images.pexels.com/photos/53844/pexels-photo-53844.jpeg?auto=compress&cs=tinysrgb&w=300',
+        image: 'https://res.cloudinary.com/dzxbhjdkj/image/upload/v1761224869/elevacao-pelvica-de-quadril_a7ynpp.webp',
     },
     {
         id: 2,
@@ -455,7 +455,7 @@ const exercisesData = [{
         duration: '3x 8 repetições (cada perna)',
         difficulty: 'Médio',
         description: 'Fique em uma perna, mantendo o abdômen contraído. Dobre o joelho de apoio como se fosse sentar em uma cadeira. Mantenha o joelho alinhado com o pé. Retorne à posição inicial.',
-        image: 'https://via.placeholder.com/300x200/4A7C59/FFFFFF?text=Agachamento+Unilateral',
+        image: 'https://res.cloudinary.com/dzxbhjdkj/image/upload/v1761224869/agachamento-unilateral-e-pistol-squat_d4ac7f.webp',
     },
     {
         id: 3,
@@ -465,7 +465,7 @@ const exercisesData = [{
         duration: '3x 30 segundos (cada lado)',
         difficulty: 'Médio',
         description: 'Apoie-se no antebraço e na lateral do pé. Levante o quadril do chão, formando uma linha reta da cabeça aos pés. Mantenha a posição.',
-        image: 'https://via.placeholder.com/300x200/A3B18A/FFFFFF?text=Prancha+Lateral',
+        image: 'https://res.cloudinary.com/dzxbhjdkj/image/upload/v1761224869/Pancha_Lateral_ua1kae.png',
     },
     {
         id: 4,
@@ -475,7 +475,7 @@ const exercisesData = [{
         duration: '2x 30 segundos',
         difficulty: 'Fácil',
         description: 'Sente-se no chão com uma perna esticada e a outra dobrada. Incline o tronco para a frente em direção ao pé da perna esticada, mantendo as costas retas. Troque de lado.',
-        image: 'https://via.placeholder.com/300x200/3D3B3A/FFFFFF?text=Alongamento',
+        image: 'https://res.cloudinary.com/dzxbhjdkj/image/upload/v1761224869/alongamento_isquiotibias_gnp7vu.jpg',
     },
     // NOVOS EXERCÍCIOS DE MOBILIDADE E POSTURA
     {
@@ -486,7 +486,7 @@ const exercisesData = [{
         duration: '30 segundos',
         difficulty: 'Fácil',
         description: 'Gire os punhos para um lado e para o outro com as mãos entrelaçadas ou com os braços esticados. Movimento suave e controlado.',
-        image: 'https://images.pexels.com/photos/4148782/pexels-photo-4148782.jpeg?auto=compress&cs=tinysrgb&w=300',
+        image: 'https://res.cloudinary.com/dzxbhjdkj/image/upload/v1761224870/Mobilidade_Punhos_jtt5t3.png',
     },
     {
         id: 6,
@@ -496,7 +496,7 @@ const exercisesData = [{
         duration: '10 repetições (para frente e para trás)',
         difficulty: 'Fácil',
         description: 'Faça círculos amplos com os ombros, primeiro para trás e depois para frente. Ajuda a aliviar a tensão na parte superior das costas.',
-        image: 'https://images.pexels.com/photos/4753995/pexels-photo-4753995.jpeg?auto=compress&cs=tinysrgb&w=300',
+        image: 'https://res.cloudinary.com/dzxbhjdkj/image/upload/v1761224869/C%C3%ADrculo_de_Ombros_wqbkmb.avif',
     },
     {
         id: 7,
@@ -506,7 +506,7 @@ const exercisesData = [{
         duration: '3x 5 repetições (cada lado)',
         difficulty: 'Fácil',
         description: 'Sentado com a coluna ereta, rotacione suavemente o tronco para um lado, usando as mãos como apoio. Mantenha os quadris fixos.',
-        image: 'https://images.pexels.com/photos/3823467/pexels-photo-3823467.jpeg?auto=compress&cs=tinysrgb&w=300',
+        image: 'https://res.cloudinary.com/dzxbhjdkj/image/upload/v1761224870/Rota%C3%A7%C3%A3o_de_Tronco_Sentado_rzl0vb.png',
     }
 ];
 
