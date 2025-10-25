@@ -9,12 +9,12 @@ from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
 // Habilita logs de debug do
 // Firestore
-// setLogLevel('Debug'); //
+setLogLevel('Debug'); //
 
 // --- VARIÁVEIS GLOBAIS (Obrigatórias) ---
 
 // Importe as funções que você precisa dos SDKs que você precisa
-//import { initializeApp } from "firebase/app";
+import { initializeApp } from "firebase/app";
 // TODO: Adicionar SDKs para produtos Firebase que você deseja usar
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -36,13 +36,13 @@ console.log("Usuários cadastrados:", usuarios);
 
 // Initialize Firebase
 
-/*const appId = "1:502338413071:web:094e55b0b3b08a8ff7f97a".appId.split(':')[2] || 'default-app-id';
-const firebaseConfig = Object.keys("1:502338413071:web:094e55b0b3b08a8ff7f97a").length > 0 ? REAL_FIREBASE_CONFIG : JSON.parse(typeof __firebase_config !== 'undefined' ? __firebase_config : '{}');
-const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
-*/
+//const appId = "1:502338413071:web:094e55b0b3b08a8ff7f97a".appId.split(':')[2] || 'default-app-id';
+//const firebaseConfig = Object.keys("1:502338413071:web:094e55b0b3b08a8ff7f97a").length > 0 ? REAL_FIREBASE_CONFIG : JSON.parse(typeof __firebase_config !== 'undefined' ? __firebase_config : '{}');
+//const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
+
 //const app = initializeApp(firebaseConfig);
 const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
-const firebaseConfig = JSON.parse(typeof __firebase_config !== 'undefined' ? __firebase_config : '{}');
+//const firebaseConfig = JSON.parse(typeof __firebase_config !== 'undefined' ? __firebase_config : '{}');
 const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
 
 // --- INICIALIZAÇÃO FIREBASE ---
@@ -568,7 +568,7 @@ const renderImportantRecommendations = () => {
         <h3 class="text-2xl font-bold text-[#6B8E23] mb-4">Recomendações Importantes</h3>
         <ul class="space-y-3 text-gray-700">
             <li class="flex items-start">
-                <span class="text-[#6B8E23] text-xl mr-3">✅</span>
+                <span class="text-[#6B8E23] text-xl mr-3"></span>
                 <div>
                     <strong class="text-[#3D3B3A]">Não force:</strong> Se sentir dor, desconforto ou dúvida sobre a execução, pare imediatamente.
                 </div>
