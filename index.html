@@ -7,6 +7,8 @@
     <title>Painel IEsporte - Login e Dashboard</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.11.1/sql-wasm.min.js"></script>
+    <!-- Adicionado para SQLite via sql.js -->
 
     <link rel="stylesheet" href="style.css">
 </head>
@@ -64,7 +66,7 @@
                         </label>
                     </div>
                 </div>
-                <button type="submit" class="w-full bg-[#4A7C59] text-white py-3 px-4 rounded-full font-bold hover:bg-[#6B8E23] transition-colors focus:outline-none focus:ring-4 focus:ring-green-200">
+                <button type="submit" class="w-full bg-[#4A7C59] text-white py-3 px-4 rounded-full font-bold hover:bg-[#6B8E23] transition-colors focus:outline-none focus:outline-none focus:ring-4 focus:ring-green-200">
                     Criar Conta
                 </button>
             </form>
@@ -168,8 +170,9 @@
                             <div class="tech-stack-item border-2 border-gray-200 rounded-lg p-6 relative group w-64">
                                 <div class="text-4xl mb-3"> 💾 </div>
                                 <h4 class="font-bold text-lg">Banco de Dados</h4>
-                                <p class="text-sm text-gray-500">SQL</p>
-                                <div class="absolute bottom-full mb-2 w-60 left-1/2 -translate-x-1/2 bg-gray-800 text-white text-xs rounded py-1 px-2 opacity-0 group-hover:opacity-100 transition-opacity">Persistência de dados clínicos e de exercícios.</div>
+                                <p class="text-sm text-gray-500">SQLite</p>
+                                <!-- Atualizado para refletir uso de SQLite -->
+                                <div class="absolute bottom-full mb-2 w-60 left-1/2 -translate-x-1/2 bg-gray-800 text-white text-xs rounded py-1 px-2 opacity-0 group-hover:opacity-100 transition-opacity">Persistência de dados clínicos e de exercícios, agora local com SQLite.</div>
                             </div>
                         </div>
                     </div>
@@ -186,7 +189,7 @@
                             <h3 class="font-bold text-lg text-red-700">Excluir Sua Conta</h3>
                             <p class="text-sm text-red-600">Esta ação é irreversível e removerá permanentemente seu histórico e todos os seus dados da plataforma IEsporte.</p>
                         </div>
-                        <button id="delete-account-btn" class="px-6 py-3 font-bold rounded-full text-white hover:opacity-90 transition-opacity focus:outline-none focus:ring-4 focus:ring-red-300" aria-controls="modal">
+                        <button id="delete-account-btn" class="px-6 py-3 font-bold rounded-full text-white bg-red-600 hover:opacity-90 transition-opacity focus:outline-none focus:ring-4 focus:ring-red-300" aria-controls="modal"> <!-- Adicionado bg-red-600 -->
                             Excluir Conta
                         </button>
                     </div>
